@@ -28,7 +28,7 @@ jobs:
               run: uv run ./scripts/install_nltk_deps.py
 
             - name: Run tests
-              run: uv run pytest tests
+              run: ./run.sh test:ci
 
             - name: Upload code coverage reports
               uses: actions/upload-artifact@v4
