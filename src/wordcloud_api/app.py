@@ -1,3 +1,4 @@
+import ssl
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 import nltk
@@ -18,7 +19,13 @@ class TextInput(BaseModel):
     text: str
 
 
-def _download_nltk_deps():
+def download_nltk_deps():
+    try:  # Solves SSL error: Thanks: https://github.com/gunthercox/ChatterBot/issues/930#issuecomment-322111087
+        _create_unverified_https_context = ssl._create_unverified_context
+    except AttributeError:
+        pass
+    else:
+        ssl._create_default_https_context = _create_unverified_https_context
     nltk.download("stopwords")
     nltk.download("punkt_tab")
     nltk.download("wordnet")
@@ -63,5 +70,5 @@ async def create_wordcloud(input_text: TextInput):
 
 
 if __name__ == "__main__":
-    _download_nltk_deps()
+    download_nltk_deps()
     uvicorn.run(app, host="0.0.0.0", port=8000)
