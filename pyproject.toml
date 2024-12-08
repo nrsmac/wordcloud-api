@@ -20,6 +20,7 @@ dev = [
     "pytest>=8.3.4",
     "pytest-fastapi>=0.1.0",
     "ruff>=0.8.2",
+    "pre-commit>=4.0.1",
 ]
 
 [build-system]
