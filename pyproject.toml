@@ -1,0 +1,68 @@
+[project]
+name = "wordcloud-api"
+version = "0.1.0"
+description = "An API for generating wordclouds."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi[standard]>=0.115.6",
+    "matplotlib>=3.9.3",
+    "nltk>=3.9.1",
+    "uvicorn>=0.32.1",
+    "wordcloud>=1.9.4",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "mypy>=1.13.0",
+    "pytest-cov>=6.0.0",
+    "pytest>=8.3.4",
+    "pytest-fastapi>=0.1.0",
+    "ruff>=0.8.2",
+]
+
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+] # Add @slow decorator for long-running tests
+
+[tool.black]
+line-length = 119
+# regular expression ignoring multiple patterns separated by '|' and newlines
+exclude = '''
+/(
+    \.venv
+  | venv
+)/
+'''
+
+[tool.flake8]
+docstring-convention = "all"
+ignore = ["D107", "D212", "E501", "W503", "W605", "D203", "D100"]
+exclude = ["venv"]
+max-line-length = 119
+
+# radon, flake8 plugin that allows us to check for 'cyclimatic code complexity'
+radon-max-cc = 10
+
+[tool.isort]
+profile = "black"
+multi_line_output = "VERTICAL_HANGING_INDENT"
+force_grid_wrap = 2
+line_length = 119
+
+[tool.pylint."messages control"]
+disable = [
+    "line-too-long",
+    "trailing-whitespace",
+    "missing-function-docstring",
+    "consider-using-f-string",
+    "import-error",
+    "too-few-public-methods",
+    "redefined-outer-name",
+]
