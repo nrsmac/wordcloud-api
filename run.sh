@@ -2,6 +2,7 @@
 
 set -e
 
+THIS_DIR="./"
 MINIMUM_TEST_COVERAGE_PERCENT=0
 BUILD_DIR="./build"
 
@@ -24,7 +25,7 @@ function test:quick {
 
 # execute tests against the installed package; assumes the wheel is already installed
 function test:ci {
-    INSTALLED_PKG_DIR="$(uv run -c 'import files_api; print(files_api.__path__[0])')"
+    INSTALLED_PKG_DIR="$(echo 'import wordcloud_api; print(wordcloud_api.__path__[0])' | uv run -)"
     # in CI, we must calculate the coverage for the installed package, not the src/ folder
     COVERAGE_DIR="$INSTALLED_PKG_DIR" run-tests
 }
