@@ -1,6 +1,3 @@
-Based on the information provided, here's a draft README.md for your FastAPI wordcloud generator project:
-
-```markdown
 # WordCloud API
 
 A FastAPI application that generates wordcloud images from input text.
@@ -16,15 +13,15 @@ A FastAPI application that generates wordcloud images from input text.
 
 0. Install `uv` if you haven't already:
 
-   ```
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   ```
+```
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
 
 1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/wordcloud-api.git
-   cd wordcloud-api
-   ```
+```
+git clone https://github.com/ntsmac/wordcloud-api.git
+cd wordcloud-api
+```
 
 2. Run the application (uv manages the dependencies!):
    ```
